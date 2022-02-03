@@ -12,6 +12,7 @@ window.addEventListener("load", () => {
     setUpCanvas();
     particlesVolume();
     particleCollection.forEach(particleInfo => drawParticle(particleInfo));
+    window.requestAnimationFrame(updateParticles);
 })
 
 const setUpCanvas = () => {
@@ -32,7 +33,41 @@ const createParticle = (particle = {}, prevPosY = null) => {
     particle.randomPosY = prevPosY ? prevPosY : Math.random() * canvas.height;
     particle.randomSize = (Math.random() * (particleSize.max - particleSize.min)) + particleSize.min;
 
+    const initialVelocityY = getInitialVelocity(particle.randomSize);
+
+    particle.velocity = {
+        X: 0,
+        Y: initialVelocityY,
+        max: initialVelocityY * 2
+    }
+
     return particle;
+}
+
+const getInitialVelocity = (size) => {
+    const minVelo = particleVelocity.velocityY.min;
+    const maxVelo = particleVelocity.velocityY.max;
+    
+    const range = maxVelo - minVelo;
+    const fract = (size - particleSize.min) / (particleSize.max - particleSize.min);
+
+    return minVelo + (fract * range);
+}
+
+const updateParticles = (timestamp) => {
+    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+    let [x, y] = [.001, .001];
+
+    for(particle of particleCollection) {
+        particle.velocity.X = x;
+        particle.velocity.Y = y;
+
+        x += .001; y += .001;
+
+        drawParticle(particle);
+    }
+
+    window.requestAnimationFrame(updateParticles);
 }
 
 const drawParticle = (particleObj) => {
