@@ -11,7 +11,6 @@ const particleVelocity = {
 window.addEventListener("load", () => {
     setUpCanvas();
     particlesVolume();
-    particleCollection.forEach(particleInfo => drawParticle(particleInfo));
     window.requestAnimationFrame(updateParticles);
 })
 
@@ -62,12 +61,23 @@ const updateParticles = (timestamp) => {
         particle.velocity.X = x;
         particle.velocity.Y = y;
 
-        x += .001; y += .001;
+        updatePosition(particle, timestamp);
+
+        x += .0000005; y += .0000005;
 
         drawParticle(particle);
     }
 
     window.requestAnimationFrame(updateParticles);
+}
+
+const updatePosition = (particle, timestamp) => {
+    particle.randomPosX -= (particle.velocity.X * 100);
+    particle.randomPosY -= (particle.velocity.Y * 1000);
+
+    if(particle.randomPosX < 0 || particle.randomPosY < 0) {
+        particle = createParticle(particle, canvas.height + 10);
+    }
 }
 
 const drawParticle = (particleObj) => {
