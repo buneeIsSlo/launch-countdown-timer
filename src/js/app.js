@@ -2,11 +2,13 @@ const canvas = document.getElementById("canvas");
 const canvasContext = canvas.getContext("2d");
 
 const particleCollection = [];
-const particleSize = {min: 1, max: 3};
+const particleSize = {min: 1, max: 4};
 const particleVelocity = {
-    velocityX: {min: .03, max: .05},
-    velocityY: {min: .03, max: .05}
+    X: {min: -.03, max: .05},
+    Y: {min: .02, max: .1}
 }
+
+let prevTimestamp = 0;
 
 window.addEventListener("load", () => {
     setUpCanvas();
@@ -18,7 +20,7 @@ const setUpCanvas = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    canvasContext.fillStyle = "#fff";
+    canvasContext.fillStyle = "#eee";
 }
 
 const particlesVolume = () => {
@@ -44,8 +46,8 @@ const createParticle = (particle = {}, prevPosY = null) => {
 }
 
 const getInitialVelocity = (size) => {
-    const minVelo = particleVelocity.velocityY.min;
-    const maxVelo = particleVelocity.velocityY.max;
+    const minVelo = particleVelocity.Y.min;
+    const maxVelo = particleVelocity.Y.max;
     
     const range = maxVelo - minVelo;
     const fract = (size - particleSize.min) / (particleSize.max - particleSize.min);
@@ -55,25 +57,33 @@ const getInitialVelocity = (size) => {
 
 const updateParticles = (timestamp) => {
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-    let [x, y] = [.001, .001];
 
     for(particle of particleCollection) {
-        particle.velocity.X = x;
-        particle.velocity.Y = y;
-
-        updatePosition(particle, timestamp);
-
-        x += .0000005; y += .0000005;
+        particle.velocity.X = updateVelocity(particle.velocity, 'X');
+        particle.velocity.Y = updateVelocity(particle.velocity, 'Y');
+        updatePosition(particle, timestamp - prevTimestamp);
 
         drawParticle(particle);
     }
 
+    prevTimestamp = timestamp;
     window.requestAnimationFrame(updateParticles);
 }
 
+const updateVelocity = (velocity, direction) => {
+    const minVelo = particleVelocity[direction].min;
+    const maxVelo = direction === 'Y' ? velocity.max : particleVelocity[direction].max;
+    const range = (maxVelo - minVelo) * .1;
+
+    const randomVelo = (Math.random() * range) - (range / 2);
+    const newVelo = velocity[direction] + randomVelo;
+
+    return newVelo < minVelo ? minVelo : newVelo > maxVelo ? maxVelo : newVelo;
+}
+
 const updatePosition = (particle, timestamp) => {
-    particle.randomPosX -= (particle.velocity.X * 100);
-    particle.randomPosY -= (particle.velocity.Y * 1000);
+    particle.randomPosX -= (particle.velocity.X * timestamp);
+    particle.randomPosY -= (particle.velocity.Y * timestamp);
 
     if(particle.randomPosX < 0 || particle.randomPosY < 0) {
         particle = createParticle(particle, canvas.height + 10);
