@@ -5,32 +5,55 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://use.fontawesome.com/9a720c7c53.js"></script>
   <title>Countdown Timer</title>
-
-  <style>
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-    }
-
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      font-family: 'Courier New', Courier, monospace;
-    }
-
-    canvas {
-      background: hsl(234, 17%, 12%);
-    }
-  </style>
-
-<script defer src="js/app.e490a5a7f93401c02211.bundle.js"></script></head>
+<script defer src="js/app.2be9f1f0a5f2d4af2af2.bundle.js"></script></head>
 
 <body>
-  <canvas id="canvas"></canvas>
+  <main class="countdown">
+    <div class="countdown__container">
+      <div class="countdown__title">We're coming soon</div>
+      <div class="timer" aria-hidden="true">
+        <div class="timer__card" data-card="days">
+          <span class="timer__card-shadow"></span>
+          <div class="timer__card timer__card--front" data-front="00"></div>
+          <div class="timer__card timer__card--back" data-back="00"></div>
+          <span class="timer__card-label">Days</span>
+        </div>
+
+        <div class="timer__card" data-card="hours">
+          <span class="timer__card-shadow"></span>
+          <div class="timer__card timer__card--front" data-front="00"></div>
+          <div class="timer__card timer__card--back" data-back="00"></div>
+          <span class="timer__card-label">Hours</span>
+        </div>
+
+        <div class="timer__card" data-card="minutes">
+          <span class="timer__card-shadow"></span>
+          <div class="timer__card timer__card--front" data-front="00"></div>
+          <div class="timer__card timer__card--back" data-back="00"></div>
+          <span class="timer__card-label">Minutes</span>
+        </div>
+
+        <div class="timer__card" data-card="seconds">
+          <span class="timer__card-shadow"></span>
+          <div class="timer__card timer__card--front" data-front="00"></div>
+          <div class="timer__card timer__card--back" data-back="00"></div>
+          <span class="timer__card-label">Seconds</span>
+        </div>
+      </div>
+
+      <footer class="countdown__socials">
+        <a href="#" class="countdown__socials-link" aria-label="Follow us on Facebook"><i class="fa fa-facebook-square"
+            aria-hidden="true"></i></a>
+        <a href="#" class="countdown__socials-link" aria-label="Follow us on Pinterest"><i
+            class="fa fa-pinterest-square" aria-hidden="true"></i></a>
+        <a href="#" class="countdown__socials-link" aria-label="Follow us on Instagram"><i class="fa fa-instagram"
+            aria-hidden="true"></i></a>
+      </footer>
+    </div>
+  </main>
+  <!-- <canvas id="canvas"></canvas> -->
 </body>
 
 </html>
