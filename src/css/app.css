@@ -1,0 +1,102 @@
+:root {
+    --c-grayish-blue: hsl(237, 18%, 59%);
+    --c-soft-red: hsl(345, 95%, 68%);
+    --c-white: hsl(0, 0%, 100%);
+    --c-dark-destaurated-blue: hsl(236, 21%, 26%);
+    --c-dark-blue: hsl(235, 16%, 14%);
+    --c-blackish-blue: hsl(234, 17%, 12%);
+}
+
+body {
+    font-family: "Red Hat Text", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    background-color: var(--c-dark-destaurated-blue);
+    color: var(--c-white);
+    text-transform: uppercase;
+}
+
+.countdown__title {
+    margin: 0 auto;
+    width: 80%;
+    font-size: 1rem;
+    letter-spacing: .4rem;
+}
+
+.timer__card-label {
+    font-size: .5rem;
+    letter-spacing: .4em;
+    background-color: red;
+}
+
+
+/* ----- Global styles ----- */
+
+body {
+    /* height: 100vh; */
+    /* padding: 5rem 1rem; */
+}
+
+.countdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1rem;
+}
+
+.countdown__container {
+    outline: 2px solid yellow;
+}
+
+.countdown__title {
+    text-align: center;
+}
+
+.timer {
+    display: flex;
+    /* gap: 10px; */
+    justify-content: space-between;
+    height: 200px;
+    margin-top: 110px;
+    background-color: coral;
+}
+
+.timer__card-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 9vh;
+    background-color: blue;
+    perspective: 200px;
+
+    /* background-color: #eee; */
+}
+
+.timer__card {
+    font-size: clamp(2rem, 7.4vw, 6rem);
+    font-weight: 700;
+    color: var(--c-soft-red);
+}
+
+.timer__card:before {
+    /* background-color: #c0c0c0; */
+}
+
+.timer__card:after {
+    /* background-color: #141414; */
+}
+
+.timer__card:before,
+.timer__card:after {
+    content: attr(data-back);
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    inset: 0;
+    line-height: 0;
+    overflow: hidden;
+    /* width: 100%; */
+    /* height: 100%; */
+}
