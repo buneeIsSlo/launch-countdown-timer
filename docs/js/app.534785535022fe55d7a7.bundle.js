@@ -91,7 +91,7 @@ eval("__webpack_require__.e(/*! import() */ \"src_css_normailze_css\").then(__we
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + "." + {"src_css_normailze_css":"a33ebbe075be53734ef0","src_css_app_css":"5f61e6a1e1a1ea79c0df"}[chunkId] + ".bundle.js";
+/******/ 			return "js/" + chunkId + "." + {"src_css_normailze_css":"a33ebbe075be53734ef0","src_css_app_css":"33ec552f9a7a3ea51db0"}[chunkId] + ".bundle.js";
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -200,7 +200,7 @@ eval("__webpack_require__.e(/*! import() */ \"src_css_normailze_css\").then(__we
 /******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
-/******/ 		// no baseURI
+/******/ 		__webpack_require__.b = document.baseURI || self.location.href;
 /******/ 		
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
