@@ -1,5 +1,12 @@
-import ("../css/normailze.css");
-import ("../css/app.css");
+import("../css/normailze.css");
+import("../css/app.css");
 
+import Timer from "../js/timer.js";
+
+const daysBeforeLaunch = 9;
+const daysToSeconds = daysBeforeLaunch * 86400;
+
+let days = new Timer(daysToSeconds, `data-card="days"`);
+let seconds = new Timer(daysToSeconds, `data-card="seconds"`);
 
 console.log("reset");
