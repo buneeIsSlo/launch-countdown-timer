@@ -181,13 +181,13 @@ body {
 }
 
 
-/* .timer__card-wrapper .timer__card--front:before {
+.timer__card-wrapper.running .timer__card--front:before {
     animation: frontFlipDown .8s ease-in-out infinite;
 }
 
-.timer__card-wrapper .timer__card--back:after {
+.timer__card-wrapper.running .timer__card--back:after {
     animation: backFlipDown .8s ease-in-out infinite;
-} */
+}
 
 
 @keyframes frontFlipDown {
@@ -252,5 +252,33 @@ body {
 
     .timer__card-label {
         font-size: .8rem;
+    }
+}
+
+
+@media (min-width: 1200px) {
+
+    .countdown {
+        /* outline: 2px solid yellow; */
+        gap: 13rem;
+    }
+
+    .countdown__container {
+        max-width: 660px;
+        outline: none;
+    }
+
+    .timer__card-wrapper {
+        width: 20%;
+        height: 64px;
+        max-width: 220px;
+    }
+
+    .timer__card {
+        font-size: 4.7rem;
+    }
+
+    .timer__card-label {
+        font-size: .9rem;
     }
 }
