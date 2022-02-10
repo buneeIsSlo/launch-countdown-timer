@@ -20,6 +20,8 @@ export default class Timer {
         this.timerBack = document.querySelector(`[${this.selectors.timerBack}]`);
 
         this.cardDataset = this.card.dataset.card;
+        this.frontDataset = this.timerFront.dataset.front;
+        this.backDataset = this.timerBack.dataset.back;
         this.countdown;
         this.currentTime = 0;
         this.nextTime = 0;
@@ -32,19 +34,19 @@ export default class Timer {
     }
 
     setUpEvents() {
-        this.timer(777600);
+        this.timer(this.time);
     }
 
     timer(seconds) {
         const now = Date.now();
         const then = now + (seconds * 1000);
 
-        this.firstAnimation = true;
         this.displayTimeLeft(seconds);
-        console.log([now, then]);
+        this.firstAnimation = true;
 
         this.countdown = setInterval(() => {
             const secondsLeft = Math.round((then - Date.now()) / 1000);
+            // console.log([this.frontDataset, this.backDataset]);
 
             if (secondsLeft < 0) {
                 clearInterval(this.countdown);
@@ -64,32 +66,45 @@ export default class Timer {
         this.remainderMinutes = seconds % 3600;
         this.minutes = Math.floor(this.remainderMinutes / 60);
         this.remainderSeconds = seconds % 60;
+        console.log([this.days, this.hours, this.minutes, this.remainderSeconds]);
 
         if (!this.firstAnimation) return;
 
         switch (this.cardDataset) {
             case "days":
-                this.currentTime = +`${this.days + 1}`;
+                this.currentTime = `${this.days + 1}`;
 
                 if (this.initialTime !== this.currentTime) {
                     this.nextTime = this.days;
-                    console.log([this.nextTime, this.hours, this.minutes, this.remainderSeconds]);
+                    this.flipDown(this.currentTime, this.nextTime);
+                    //console.log([this.nextTime, this.hours, this.minutes, this.remainderSeconds]);
                 }
                 break;
 
             case "hours":
-                this.currentTime = +`${this.hours + 1}`;
+                this.currentTime = `${this.hours + 1}`;
 
                 if (this.initialTime !== this.currentTime) {
                     this.nexTime = this.hours;
-                    console.log(this.currentTime);
+                    this.flipDown(this.currentTime, this.nextTime);
                 }
                 break;
 
-            default:
+            case "minutes":
+                this.currentTime = `${this.minutes + 1}`;
+                console.log(this.currentTime);
+
+                if (this.initialTime !== this.currentTime) {
+                    this.nextTime = this.minutes;
+                    this.flipDown(this.currentTime, this.nextTime);
+                }
+                break;
+
+            case "seconds":
                 this.currentTime = `${this.remainderSeconds + 1}`;
-                this.nextTime = `${this.remainderSeconds}`;
-                this.flipDown(this.currentTime, this.nextTime);
+                this.nextTime = this.remainderSeconds;
+                console.log([this.currentTime, "10"]);
+                this.flipDown(this.currentTime, "10");
         }
     }
 
@@ -109,43 +124,53 @@ export default class Timer {
     }
 
     cardFrontTime(time) {
-        this.initialTime = time + 1;
-
+        this.initialTime = +(time) + 1;
         switch (this.cardDataset) {
             case "days":
-                if (time > 8) {
-                    this.timerFront.dataset.front = '00';
-                } else if (time >= 7) {
-                    this.timerFront.dataset.front = `0${time}`;
-                } else if (time < 7 && time > 0) {
-                    this.timerFront.dataset.front = `0${time}`;
-                } else if (time == 0) {
-                    this.timerFront.dataset.front = '00';
+                if (time > 8 || time === 0) {
+                    this.frontDataset = "00";
+                }
+                else if (time <= 7 || time > 0) {
+                    this.frontDataset = `0${time}`;
+                }
+                break;
+
+            case "hours":
+                if (time > 23 || time === 0) {
+                    this.frontDataset = "00";
+                }
+                else if (time >= 10) {
+                    this.frontDataset = time;
+                }
+                else if (time < 10) {
+                    this.frontDataset = `0${time}`;
                 }
                 break;
 
             default:
-                if (time > 59) {
-                    this.timerFront.dataset.front = '00';
-                } else if (time >= 10) {
-                    this.timerFront.dataset.front = time;
-                } else if (time < 10 && time > 0) {
-                    this.timerFront.dataset.front = `0${time}`;
-                } else if (time == 0) {
-                    this.timerFront.dataset.front = '00';
+                console.log("iss secs");
+                if (time > 59 || time == 0) {
+                    this.frontDataset = "00";
                 }
+                else if (time >= 10) {
+                    this.timerFront.dataset.front = time;
+                }
+                else if (time < 10) {
+                    this.frontDataset = `0${time}`;
+                }
+                break;
         }
     }
 
     cardBackTime(time) {
-        if (time >= 59) {
-            this.timerBack.dataset.back = '59';
-        } else if (time >= 10) {
-            this.timerBack.dataset.back = time;
-        } else if (time < 10 && time > 0) {
-            this.timerBack.dataset.back = `0${time}`;
-        } else if (time == 0) {
-            this.timerBack.dataset.back = `00`;
+        if (time > 59 || time === 0) {
+            this.backDataset = "00";
+        }
+        else if (time >= 10) {
+            this.backDataset = time;
+        }
+        else if (time < 10) {
+            this.backDataset = `0${time}`;
         }
     }
 }
