@@ -78,7 +78,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     width: 19.2vw;
-    height: 9.5vw;
+    height: 9.1vw;
     perspective: 200px;
     color: var(--c-soft-red);
 }
@@ -95,7 +95,7 @@ body {
     position: absolute;
     top: 5px;
     left: 1.1vw;
-    border-radius: 2px;
+    border-radius: 5px;
 }
 
 .timer__card:before {
@@ -192,11 +192,11 @@ body {
 
 
 .timer__card-wrapper.running .timer__card--front:before {
-    animation: frontFlipDown .8s ease-in-out infinite;
+    animation: frontFlipDown .6s ease-in-out infinite;
 }
 
 .timer__card-wrapper.running .timer__card--back:after {
-    animation: backFlipDown .8s ease-in-out infinite;
+    animation: backFlipDown .6s ease-in-out infinite;
 }
 
 
@@ -227,7 +227,7 @@ body {
 
     .timer__card-wrapper {
         width: 22%;
-        height: 48px;
+        height: 45px;
         max-width: 100px;
     }
 
@@ -252,7 +252,7 @@ body {
 
     .timer__card-wrapper {
         width: 20%;
-        height: 63px;
+        height: 61px;
         max-width: 200px;
     }
 
@@ -280,7 +280,7 @@ body {
 
     .timer__card-wrapper {
         width: 20%;
-        height: 64px;
+        height: 63px;
         max-width: 220px;
     }
 
