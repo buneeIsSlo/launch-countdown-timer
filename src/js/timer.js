@@ -12,12 +12,14 @@ export default class Timer {
             card: this.element,
             timerFront: "data-front",
             timerBack: "data-back",
+            screenReaderEle: "data-sr",
             activeClass: "running"
         }
 
         this.card = document.querySelector(`[${this.selectors.card}]`);
         this.timerFront = this.card.querySelector(`[${this.selectors.timerFront}]`);
         this.timerBack = this.card.querySelector(`[${this.selectors.timerBack}]`);
+        this.screenReaderEle = document.querySelector(`[${this.selectors.screenReaderEle}]`);
         if (!this.card || !this.timerFront || !this.timerBack) return false;
 
         this.cardDataset = this.card.dataset.card;
@@ -90,6 +92,7 @@ export default class Timer {
                 if (this.initialTime != this.currentTime) {
                     this.nextTime = this.minutes;
                     this.flipDown(this.currentTime, this.nextTime);
+                    this.handleScreenReaders();
                 }
                 break;
 
@@ -144,5 +147,9 @@ export default class Timer {
         else if (time < 10) {
             card.dataset[side] = `0${time}`;
         }
+    }
+
+    handleScreenReaders() {
+        this.screenReaderEle.innerHTML = `Time before launch: ${this.days} days ${this.hours} hours ${this.minutes} minutes`;
     }
 }

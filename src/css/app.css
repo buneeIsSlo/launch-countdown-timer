@@ -55,6 +55,16 @@ body {
     text-align: center;
 }
 
+.sr-only:not(:focus):not(:active) {
+    width: 1px;
+    height: 1px;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .timer {
     display: flex;
     justify-content: space-between;
