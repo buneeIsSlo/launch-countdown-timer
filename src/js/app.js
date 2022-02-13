@@ -1,7 +1,12 @@
 import("../css/normailze.css");
 import("../css/app.css");
 
+import { initParticles } from "../js/particles.js";
 import Timer from "../js/timer.js";
+
+window.addEventListener("load", () => {
+    initParticles();
+})
 
 const daysBeforeLaunch = 9;
 const totalSeconds = daysBeforeLaunch > 100 ? (100 * 86400) : (daysBeforeLaunch * 86400);

@@ -1,30 +1,31 @@
-const canvas = document.getElementById("canvas");
+const canvas = document.querySelector("#canvas");
 const canvasContext = canvas.getContext("2d");
+console.log(canvasContext);
 
 const particleCollection = [];
-const particleSize = {min: 1, max: 4};
+const particleSize = { min: 1, max: 4 };
 const particleVelocity = {
-    X: {min: -.03, max: .05},
-    Y: {min: .02, max: .1}
+    X: { min: -.03, max: .05 },
+    Y: { min: .02, max: .1 }
 }
 
 let prevTimestamp = 0;
 
-window.addEventListener("load", () => {
+export const initParticles = () => {
     setUpCanvas();
     particlesVolume();
     window.requestAnimationFrame(updateParticles);
-})
+}
 
 const setUpCanvas = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    canvasContext.fillStyle = "#eee";
+    canvasContext.fillStyle = "#c0c0c0";
 }
 
 const particlesVolume = () => {
-    for(let i = 0; i < 50; i++) {
+    for (let i = 0; i < 50; i++) {
         particleCollection.push(createParticle());
     }
 }
@@ -48,7 +49,7 @@ const createParticle = (particle = {}, prevPosY = null) => {
 const getInitialVelocity = (size) => {
     const minVelo = particleVelocity.Y.min;
     const maxVelo = particleVelocity.Y.max;
-    
+
     const range = maxVelo - minVelo;
     const fract = (size - particleSize.min) / (particleSize.max - particleSize.min);
 
@@ -58,7 +59,7 @@ const getInitialVelocity = (size) => {
 const updateParticles = (timestamp) => {
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
-    for(particle of particleCollection) {
+    for (const particle of particleCollection) {
         particle.velocity.X = updateVelocity(particle.velocity, 'X');
         particle.velocity.Y = updateVelocity(particle.velocity, 'Y');
         updatePosition(particle, timestamp - prevTimestamp);
@@ -85,7 +86,7 @@ const updatePosition = (particle, timestamp) => {
     particle.randomPosX -= (particle.velocity.X * timestamp);
     particle.randomPosY -= (particle.velocity.Y * timestamp);
 
-    if(particle.randomPosX < 0 || particle.randomPosY < 0) {
+    if (particle.randomPosX < 0 || particle.randomPosY < 0) {
         particle = createParticle(particle, canvas.height + 10);
     }
 }

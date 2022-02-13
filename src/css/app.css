@@ -27,14 +27,19 @@ body {
 
 /* ----- Global styles ----- */
 
+html {
+    background-color: var(--c-dark-blue);
+    background-color: hsl(257, 19%, 14%);
+    z-index: -20;
+}
+
 body {
     min-height: 100vh;
-    /* padding: 5.8rem 0px 1rem 0px; */
-    background-color: var(--c-dark-blue);
     background-image: url("../images/pattern-hills.svg");
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: 200% 20%;
+    position: relative;
 }
 
 .countdown {
@@ -43,6 +48,13 @@ body {
     align-items: center;
     gap: 10rem;
     padding: 10rem 1rem 0rem 1rem;
+}
+
+#canvas {
+    background-color: transparent;
+    position: absolute;
+    inset: 0;
+    z-index: -10;
 }
 
 .countdown__container {
