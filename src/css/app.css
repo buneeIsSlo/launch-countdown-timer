@@ -199,6 +199,7 @@ body {
 .countdown__socials {
     display: flex;
     gap: 2rem;
+    animation: fadeIn 2.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 .fa {
@@ -214,11 +215,11 @@ body {
 
 
 .timer__card-wrapper.running .timer__card--front:before {
-    animation: frontFlipDown .6s ease-in-out infinite;
+    animation: frontFlipDown .6s ease-in-out;
 }
 
 .timer__card-wrapper.running .timer__card--back:after {
-    animation: backFlipDown .6s ease-in-out infinite;
+    animation: backFlipDown .6s ease-in-out;
 }
 
 
@@ -254,11 +255,11 @@ body {
 
 @keyframes raiseUp {
     from {
-        background-size: 100% 0%;
+        background-size: 200% 0%;
     }
 
     to {
-        background-size: 100% 20%;
+        background-size: 200% 20%;
     }
 }
 
@@ -309,6 +310,16 @@ body {
 
     .timer__card-label {
         font-size: .8rem;
+    }
+
+    @keyframes raiseUp {
+        from {
+            background-size: 100% 0%;
+        }
+
+        to {
+            background-size: 100% 20%;
+        }
     }
 }
 
