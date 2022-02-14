@@ -211,6 +211,15 @@ body {
     color: var(--c-soft-red)
 }
 
+.countdown__socials-link:focus {
+    outline: 2px dotted var(--c-soft-red);
+    outline-offset: 4px;
+}
+
+.countdown__socials-link:focus:not(:focus-visible) {
+    outline: none;
+}
+
 
 .timer__card-wrapper.running .timer__card--front:before {
     animation: frontFlipDown .6s ease-in-out;
