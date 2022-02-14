@@ -28,8 +28,7 @@ body {
 /* ----- Global styles ----- */
 
 html {
-    background-color: var(--c-dark-blue);
-    background-color: hsl(257, 19%, 14%);
+    background: linear-gradient(180deg, #191a24 17%, #1e1f29 51%, #2b212d 83%);
     z-index: -20;
 }
 
@@ -72,7 +71,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--c-dark-blue);
+    background-color: #191a24;
     animation: reveal 1.5s ease-in-out forwards;
 }
 
@@ -111,7 +110,6 @@ body {
 
 .timer__card-shadow {
     background-color: var(--c-blackish-blue);
-    /* background-color: #fff; */
     height: 200%;
     width: 17vw;
     position: absolute;
@@ -348,4 +346,26 @@ body {
     .timer__card-label {
         font-size: .9rem;
     }
+}
+
+
+@media (prefers-reduced-motion) {
+
+    body,
+    .timer,
+    .timer__card-wrapper.running .timer__card--front:before,
+    .timer__card-wrapper.running .timer__card--back:after,
+    .countdown__socials {
+        animation: none;
+    }
+
+    html {
+        background-image: url("../images/bg-stars.svg"), linear-gradient(180deg, #191A24 17%, #1e1f29 51%, #2b212d 83%);
+    }
+
+    .countdown__title::before,
+    #canvas {
+        display: none;
+    }
+
 }
