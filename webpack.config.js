@@ -27,14 +27,14 @@ module.exports = env => {
         },
 
         module: {
-            rules:[
+            rules: [
                 {
                     test: /(\.html)$/,
                     use: "html-loader"
                 },
 
                 {
-                    test:/(\.css)$/,
+                    test: /(\.css)$/,
                     use: [
                         devType ? MiniCSSExtractPlugin.loader : "style-loader",
                         {
@@ -45,7 +45,13 @@ module.exports = env => {
 
                 {
                     test: /(\.js)$/,
-                    exclude: /node_modules/
+                    exclude: /node_modules/,
+                    use: {
+                        loader: "babel-loader",
+                        options: {
+                            presets: ["@babel/preset-env"]
+                        }
+                    }
                 }
             ]
         },
@@ -55,7 +61,7 @@ module.exports = env => {
                 filename: "index.html",
                 template: "./src/index.html"
             }),
-            
+
             new MiniCSSExtractPlugin({
                 filename: "css/main.[contenthash].css"
             })
