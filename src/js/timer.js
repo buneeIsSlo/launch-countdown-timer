@@ -38,35 +38,43 @@ export default class Timer {
         this.timer(this.time);
     }
 
+    /* Function to calculate and begin countdown */
     timer(seconds) {
         const now = Date.now();
         const endTime = now + (seconds * 1000);
 
-        this.displayTimeLeft(seconds);
+        // This flips all the cards from "00" to thier respective time value
         this.firstAnimation = true;
 
+        // Set countdown interval
         const countdown = setInterval(() => {
             const secondsLeft = Math.round((endTime - Date.now()) / 1000);
 
+            // Clear inteval if seconds left is less than 0
             if (secondsLeft < 0) {
                 clearInterval(countdown);
                 return;
             }
 
+            // Display time left
             this.displayTimeLeft(secondsLeft);
         }, 1000);
     }
 
+    /* Function to display the time left */
     displayTimeLeft(seconds) {
-        this.days = Math.floor(seconds / 86400);
+
+        this.days = Math.floor(seconds / 86400); // seconds to days
         this.remainderHours = seconds % 86400;
-        this.hours = Math.floor(this.remainderHours / 3600);
+        this.hours = Math.floor(this.remainderHours / 3600); // seconds to hours
         this.remainderMinutes = seconds % 3600;
-        this.minutes = Math.floor(this.remainderMinutes / 60);
+        this.minutes = Math.floor(this.remainderMinutes / 60); // seconds to minutes
         this.remainderSeconds = seconds % 60;
 
+        // If it's the initial flip animation do nothing.
         if (!this.firstAnimation) return;
 
+        // Change time based on card's dataset
         switch (this.cardDataset) {
             case "days":
                 this.currentTime = `${this.days + 1}`;
@@ -92,7 +100,7 @@ export default class Timer {
                 if (this.initialTime != this.currentTime) {
                     this.nextTime = this.minutes;
                     this.flipDown(this.currentTime, this.nextTime);
-                    this.handleScreenReaders();
+                    this.handleScreenReaders(); // Relay the time left for screen readers
                 }
                 break;
 
@@ -104,6 +112,7 @@ export default class Timer {
 
     }
 
+    /* Function to add card flip-down animation */
     flipDown(currentTime, nextTime) {
         if (this.isCardFlipping) return false;
 
@@ -119,6 +128,7 @@ export default class Timer {
         }, this.duration)
     }
 
+    /* Function to set currentTime to the front of the card */
     cardFrontTime(time) {
         this.initialTime = +(time) + 1;
 
@@ -133,10 +143,12 @@ export default class Timer {
         }
     }
 
+    /* Function to set nextTime to the back of the card */
     cardBackTime(time) {
         this.setTime(time, 59, this.timerBack, "back");
     }
 
+    /* Function to format and set time */
     setTime(time, limit, card, side) {
         if (time > limit) {
             card.dataset[side] = "00";
@@ -149,6 +161,7 @@ export default class Timer {
         }
     }
 
+    /* Function to updat and handle screen readers */
     handleScreenReaders() {
         this.screenReaderEle.innerHTML = `Time before launch: ${this.days} days ${this.hours} hours ${this.minutes} minutes`;
     }

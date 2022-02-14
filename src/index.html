@@ -15,11 +15,18 @@
 
 <body>
   <main class="countdown">
+    <!-- Particles canvas -->
     <canvas id="canvas" aria-hidden="true"></canvas>
+
+    <!-- Countdown container -->
     <div class="countdown__container">
       <h1 class="countdown__title">We're launching soon</h1>
+
+      <!-- Screen Reader class for countdown time updated in JS -->
       <span class="sr-only" aria-live="polite" data-sr></span>
+
       <div class="timer" aria-hidden="true">
+        <!-- Days card -->
         <div class="timer__card-wrapper" data-card="days">
           <span class="timer__card-shadow"></span>
           <div class="timer__card timer__card--front" data-front="00"></div>
@@ -27,6 +34,7 @@
           <span class="timer__card-label">Days</span>
         </div>
 
+        <!-- Hours card -->
         <div class="timer__card-wrapper" data-card="hours">
           <span class="timer__card-shadow"></span>
           <div class="timer__card timer__card--front" data-front="00"></div>
@@ -34,6 +42,7 @@
           <span class="timer__card-label">Hours</span>
         </div>
 
+        <!-- Minutes card -->
         <div class="timer__card-wrapper" data-card="minutes">
           <span class="timer__card-shadow"></span>
           <div class="timer__card timer__card--front" data-front="00"></div>
@@ -41,6 +50,7 @@
           <span class="timer__card-label">Minutes</span>
         </div>
 
+        <!-- Seconds card -->
         <div class="timer__card-wrapper" data-card="seconds">
           <span class="timer__card-shadow"></span>
           <div class="timer__card timer__card--front" data-front="00"></div>
@@ -50,6 +60,7 @@
       </div>
     </div>
 
+    <!-- Social linksk container -->
     <footer class="countdown__socials">
       <a href="#" class="countdown__socials-link" aria-label="Follow us on Facebook"><i class="fa fa-facebook-square"
           aria-hidden="true"></i></a>
@@ -59,7 +70,6 @@
           aria-hidden="true"></i></a>
     </footer>
   </main>
-  <!-- <canvas id="canvas"></canvas> -->
 </body>
 
 </html>
