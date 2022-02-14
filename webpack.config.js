@@ -16,6 +16,7 @@ module.exports = env => {
         output: {
             path: path.resolve(__dirname, "docs"),
             filename: "js/[name].[contenthash].bundle.js",
+            assetModuleFilename: "imgs/[name][ext]",
             clean: true
         },
 
@@ -31,6 +32,11 @@ module.exports = env => {
                 {
                     test: /(\.html)$/,
                     use: "html-loader"
+                },
+
+                {
+                    test: /\.(svg|ico|webp|png|jpg|jpeg|gif)$/,
+                    type: "asset/resource"
                 },
 
                 {
