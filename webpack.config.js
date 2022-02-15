@@ -10,7 +10,7 @@ module.exports = env => {
         mode: devType ? "production" : "development",
 
         entry: {
-            app: path.resolve(__dirname, "./src/js/app.js")
+            app: path.resolve(__dirname, "./src/js/app.js"),
         },
 
         output: {
