@@ -1,6 +1,6 @@
 /* CSS Imports */
-import("../css/normailze.css");
-import("../css/app.css");
+import "../css/normailze.css";
+import "../css/app.css";
 
 /* JS imports */
 import { initParticles } from "../js/particles.js";
