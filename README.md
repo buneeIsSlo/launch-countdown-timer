@@ -3,7 +3,7 @@
 Hello! This is my solution to the [Launch countdown timer challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/launch-countdown-timer-N0XkGfyz-). 
 
 ## Live Site URL
-https://buneeisslo.github.io/baseApparel/
+https://buneeisslo.github.io/launch-countdown-timer/
 
 ### Built with
 - HTML
